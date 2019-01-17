@@ -135,21 +135,21 @@ console.log(rates);
 
 // functions returning functions
 
-function interviewQuestion(job) {
-    if (job === 'designer') {
-        return function(name) {
-            console.log(name  + ', can you explain what is UX?');
-        }
-    } else if (job === 'teacher') {
-        return function(name) {
-            console.log('What subject do you teach, ' + name + ' ?');
-        }
-    } else {
-        return function(name) {
-            console.log(name + ', what is your goal?');
-        }
-    }
-}
+// function interviewQuestion(job) {
+//     if (job === 'designer') {
+//         return function(name) {
+//             console.log(name  + ', can you explain what is UX?');
+//         }
+//     } else if (job === 'teacher') {
+//         return function(name) {
+//             console.log('What subject do you teach, ' + name + ' ?');
+//         }
+//     } else {
+//         return function(name) {
+//             console.log(name + ', what is your goal?');
+//         }
+//     }
+// }
 
 var teacherQuestion = interviewQuestion('teacher');
 teacherQuestion('John');
@@ -180,3 +180,37 @@ game();
     console.log(score >= 5 - goodLuck);
 })(5);
 
+// closures
+
+function retirement(retirementAge) {
+    var a = ' years left until retirement.'
+    return function(yearOfBirth) {
+        var age = 2019 - yearOfBirth;
+        console.log((retirementAge - age) + a);
+    }
+}
+
+var retirementUS = retirement(66);
+retirementUS(1990);
+
+var retirementGermany = retirement(65);
+retirementGermany(1963);
+
+var retirementPoland = retirement(63);
+retirementPoland(1980);
+
+//retirement(63)(1990);
+
+function interviewQuestion(job) {
+    return function(name) {
+        if (job === 'designer') {
+            console.log(name  + ', can you explain what is UX?');
+        } else if (job === 'teacher') {
+            console.log('What subject do you teach, ' + name + ' ?');   
+        } else {
+                console.log(name + ', what is your goal?');
+        }
+    }
+}
+
+interviewQuestion('JS Rockstar')('Malga');
