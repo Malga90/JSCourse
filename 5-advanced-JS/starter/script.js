@@ -114,6 +114,8 @@ function isFullAge(limit, el) {
     return el >= limit;
 }
 
+
+// BIND!
 var ages = arrayCalc(years, calculateAge);
 var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
 
@@ -261,3 +263,43 @@ johnFriendly('night');
 
 var emilyFormal = john.presentation.bind(emily, 'formal');
 emilyFormal('afternoon');
+
+
+// challenge
+(function () {
+    var Question = function(question, answers, correctAnswer) {
+        this.question = question;
+        this.answers = answers;
+        this.correctAnswer = correctAnswer;
+    }
+    
+    Question.prototype.randomQuestion = function() {
+        console.log(this.question);
+    
+        for(var i = 0; i < this.answers.length; i++) {
+            console.log(i + ': ' + this.answers[i]);
+        }
+    }
+    
+    Question.prototype.goodAnswer = function(ans) {
+        if (ans === this.correctAnswer) {
+            console.log('Good job, man!')
+        } else {
+            console.log('Try again, looser.')
+        }
+    }
+    
+    var firstQuestion = new Question('Where is the love?', ['No love!', 'Over the rainbow'], 1);
+    var secondQuestion = new Question('Favourite meal?', ['Tomato!', 'Pizza'], 0);
+    var thirdQuestion = new Question('What is your deal?', ['Huh?', 'I am Batman!'], 1);
+    
+    var arrayOfQuestions = [firstQuestion, secondQuestion, thirdQuestion];
+    
+    var n = Math.floor(Math.random() * arrayOfQuestions.length);
+    
+    arrayOfQuestions[n].randomQuestion();
+    
+    var answer = parseInt(prompt('Please select the correct answer ;)'));
+    
+    arrayOfQuestions[n].goodAnswer(answer);
+})();
