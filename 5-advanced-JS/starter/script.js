@@ -94,7 +94,7 @@ console.log(obj.city);
 
 // Passing functions as arguments
 
-var years = [1990, 1982, 1958, 1963, 2009];
+var years = [2000, 1982, 1958, 1963, 2009];
 
 function arrayCalc(arr, fn) {
     var arrRes = [];
@@ -102,9 +102,7 @@ function arrayCalc(arr, fn) {
     for (var i = 0; i < arr.length; i++) {
         arrRes.push(fn(arr[i]));  
     }
-
-    return arrRes;
-    
+    return arrRes; 
 }
 
 
@@ -112,26 +110,33 @@ function calculateAge(el) {
     return 2019 - el; 
 }
 
-function isFullAge(el) {
-    return el >= 18;
-}
-
-function maxHeartRate(el) {
-    if (el >= 18 && el <= 81) {
-        return Math.round(206.7 - (0.67 * el));
-    } else {
-        return -1; 
-    }
-    
+function isFullAge(limit, el) {
+    return el >= limit;
 }
 
 var ages = arrayCalc(years, calculateAge);
-var fullAge = arrayCalc(ages, isFullAge);
-var rates = arrayCalc(ages, maxHeartRate);
+var fullJapan = arrayCalc(ages, isFullAge.bind(this, 20));
 
 console.log(ages);
-console.log(fullAge);
-console.log(rates);
+console.log(fullJapan);
+
+
+// function maxHeartRate(el) {
+//     if (el >= 18 && el <= 81) {
+//         return Math.round(206.7 - (0.67 * el));
+//     } else {
+//         return -1; 
+//     }
+    
+// }
+
+// var ages = arrayCalc(years, calculateAge);
+// var fullAge = arrayCalc(ages, isFullAge);
+// var rates = arrayCalc(ages, maxHeartRate);
+
+// console.log(ages);
+// console.log(fullAge);
+// console.log(rates);
 
 // functions returning functions
 
@@ -214,3 +219,45 @@ function interviewQuestion(job) {
 }
 
 interviewQuestion('JS Rockstar')('Malga');
+
+// Bind, call and apply
+
+var john = {
+    name: 'John',
+    age: 27,
+    job: 'teacher',
+    presentation: function(style, timeOfDay) {
+        if(style === 'formal') {
+            console.log('Good ' + timeOfDay + ', Ladies and gentelmen! I am ' +
+                        this.name + ' I am a ' + this.job + ' and I am ' +
+                        this.age + ' years old.');
+        } else if (style === 'friendly') {
+            console.log('Hi! Wazuuup? I am ' + this.name + ' I am a ' + this.job + 
+            ' and I am ' + this.age + ' years old. Have a nice ' + timeOfDay);
+        }
+    }
+};
+
+var emily = {
+    name: 'Emily',
+    age: 35,
+    job: 'designer'
+
+};
+
+john.presentation('formal', 'morining');
+
+// method borrowing - CALL
+john.presentation.call(emily, 'friendly', 'evening');
+
+// very similar, but arguments are put in an array - APPLY
+//john.presentation.apply(emily, ['friendly', 'evening']);
+
+
+// making copy of the function - BIND
+var johnFriendly = john.presentation.bind(john, 'friendly');
+johnFriendly('morning');
+johnFriendly('night');
+
+var emilyFormal = john.presentation.bind(emily, 'formal');
+emilyFormal('afternoon');
