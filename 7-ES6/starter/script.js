@@ -40,13 +40,13 @@ function driversLicence6(passedTest) {
 
 driversLicence6(true);
 
-let i = 23;
+// let i = 23;
 
-for (let i = 0; i < 5; i++) {
-  console.log(i);
-}
+// for (let i = 0; i < 5; i++) {
+//   console.log(i);
+// }
 
-console.log(i);
+// console.log(i);
 
 // Blocks and IIFEs
 
@@ -229,3 +229,53 @@ function calcAgeRetirement(year) {
 const [age2, retirement] = calcAgeRetirement(1990);
 console.log(age2);
 console.log(retirement);
+
+// Arrays in es6
+const boxes = document.querySelectorAll(".box");
+
+// es5
+var boxes5Arr = Array.prototype.slice.call(boxes);
+console.log(boxes5Arr);
+
+boxes5Arr.forEach(function(element) {
+  element.style.background = "blue";
+});
+
+//es6
+const boxes6Arr = Array.from(boxes);
+
+boxes6Arr.forEach(el => (el.style.background = "blue"));
+
+//es5
+// for (var i = 0; i < boxes5Arr.length; i++) {
+//   if (boxes5Arr[i].className === "box blue") {
+//     continue;
+//   } else {
+//     boxes5Arr[i].textContent = "I changed to blue!";
+//   }
+// }
+
+//es6
+for (const cur of boxes6Arr) {
+  if (cur.className.includes("blue")) {
+    continue;
+  }
+  cur.textContent = "I changed to blue!";
+}
+
+// es5
+var agesKids = [12, 4, 17, 6, 21];
+
+var full = agesKids.map(function(cur) {
+  return cur >= 18;
+});
+
+console.log(full);
+
+console.log(full.indexOf(true));
+console.log(agesKids[full.indexOf(true)]);
+
+//es6
+
+console.log(agesKids.findIndex(cur => cur >= 18));
+console.log(agesKids.find(el => el >= 18));
