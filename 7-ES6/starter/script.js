@@ -279,3 +279,33 @@ console.log(agesKids[full.indexOf(true)]);
 
 console.log(agesKids.findIndex(cur => cur >= 18));
 console.log(agesKids.find(el => el >= 18));
+
+///////////////////////////////////////
+// Spread operator
+
+function addFourAges(a, b, c, d) {
+  return a + b + c + d;
+}
+
+var sum1 = addFourAges(18, 13, 58, 7);
+console.log(sum1);
+
+// es5
+var ages = [18, 13, 58, 7];
+var sum2 = addFourAges.apply(null, ages);
+console.log(sum2);
+
+//es6
+const sum3 = addFourAges(...ages);
+console.log(sum3);
+
+const familySmith = ["John", "Jane", "Mark"];
+const familyNovak = ["Marisol", "Esmeralda", "Buch"];
+const bigFamily = [...familySmith, "Lily", ...familyNovak];
+console.log(bigFamily);
+
+const h = document.querySelector("h1");
+const all = [h, ...boxes];
+console.log(all);
+
+all.forEach(el => (el.style.color = "hotpink"));
