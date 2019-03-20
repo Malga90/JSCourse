@@ -309,3 +309,49 @@ const all = [h, ...boxes];
 console.log(all);
 
 all.forEach(el => (el.style.color = "hotpink"));
+
+// Rest operator
+
+// //es5
+// function isFullAge5() {
+//   var argsArr = Array.prototype.slice.call(arguments);
+//   console.log(argsArr);
+
+//   argsArr.forEach(function(el) {
+//     console.log(2019 - el >= 18);
+//   });
+// }
+
+// isFullAge5(1990, 2002, 1965);
+
+// //es6
+
+// function isFullAge6(...years) {
+//   console.log(years);
+
+//   years.forEach(el => console.log(2019 - el >= 18));
+// }
+
+// isFullAge6(1990, 2002, 1965);
+
+//es5
+function isFullAge5(limit) {
+  var argsArr = Array.prototype.slice.call(arguments, 1);
+  console.log(argsArr);
+
+  argsArr.forEach(function(el) {
+    console.log(2019 - el >= limit);
+  });
+}
+
+isFullAge5(16, 1999, 2002, 1965);
+
+//es6
+
+function isFullAge6(limit, ...years) {
+  console.log(years);
+
+  years.forEach(el => console.log(2019 - el >= limit));
+}
+
+isFullAge6(21, 1990, 2002, 1965);
