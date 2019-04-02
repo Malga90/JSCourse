@@ -388,3 +388,41 @@ function SmithPerson6(
 
 var john = new SmithPerson6("John", 1990);
 console.log(john);
+
+/////////////////////////////////
+// MAPS
+
+const question = new Map();
+question.set("question", "How much you love JavaScript?");
+question.set(1, "Nope.");
+question.set(2, "Love of my life!");
+question.set(3, "Feeling ambiguous");
+question.set(4, "Ish...");
+question.set("correct", 2);
+question.set(true, "Correct answer");
+question.set(false, "Think again!");
+
+console.log(question);
+console.log(question.get("question"));
+console.log(question.size);
+
+if (question.has(4)) {
+  console.log("We have 4 answers, how amazing!");
+  //question.delete(4);
+}
+
+// question.clear();
+
+// question.forEach((value, key) =>
+//   console.log(`This is ${key} and this is ${value}`)
+// );
+
+for (let [key, value] of question.entries()) {
+  if (typeof key === "number") {
+    console.log(`Answer ${key} is: ${value}`);
+  }
+}
+
+const answer = parseInt(prompt("Write correct answer"));
+
+console.log(question.get(answer === question.get("correct")));
