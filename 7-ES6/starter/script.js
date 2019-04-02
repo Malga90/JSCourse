@@ -423,6 +423,43 @@ for (let [key, value] of question.entries()) {
   }
 }
 
-const answer = parseInt(prompt("Write correct answer"));
+//const answer = parseInt(prompt("Write correct answer"));
 
-console.log(question.get(answer === question.get("correct")));
+//console.log(question.get(answer === question.get("correct")));
+
+//////////////////////////////////////
+/////////// Classes
+
+// es5
+var Person5 = function(name, yearOfBirth, job) {
+  this.name = name;
+  this.yearOfBirth = yearOfBirth;
+  this.job = job;
+};
+
+Person5.prototype.caclulateAge = function() {
+  var age = new Date().getFullYear - this.yearOfBirth;
+  console.log(age);
+};
+
+var jim5 = new Person5("Jim", 1995, "astronaut");
+console.log(jim5);
+
+class Person6 {
+  constructor(name, yearOfBirth, job) {
+    this.name = name;
+    this.yearOfBirth = yearOfBirth;
+    this.job = job;
+  }
+
+  caclulateAge() {
+    var age = new Date().getFullYear - this.yearOfBirth;
+    console.log(age);
+  }
+}
+
+const jim6 = new Person6("Jim", 1995, "astronaut");
+console.log(jim6);
+jim6.caclulateAge();
+
+// Classes are NOT hoisted!!!!!!!
